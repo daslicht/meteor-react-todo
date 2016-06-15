@@ -50,14 +50,18 @@ class App extends Component {
             <div className="container">
                 <header>
                     {/* jsx comment */}
+                    
                     <h1>Todo List ({this.props.incompleteCount})</h1>
+                    
                     <label className="hide-completed">
                         <input type="checkbox"
                             readOnly
                             checked={this.state.hideCompleted}
-                            onClick={this.toggleHideCompleted.bind(this)}/>
+                            onClick={this.toggleHideCompleted.bind(this)}
+                        />
                         Hide Completed Tasks
                     </label>
+
                     <form className="new-task" onSubmit={this.handleSubmit.bind(this)}>
                         <input type="text" ref="textInput" placeholder="Type to add new tasks"/>
                     </form>
@@ -76,10 +80,7 @@ class App extends Component {
 App.propTypes = {
     tasks: PropTypes.array.isRequired,
 
-    incompleteCount: Tasks.find({
-        checked: {
-            $ne: true
-        } }).count()
+    incompleteCount: PropTypes.number.isRequired,
 };
 
 export default createContainer(() => {
